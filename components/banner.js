@@ -1,4 +1,5 @@
 import React, {Component, PropTypes}from 'react';
+import classNames from 'classnames';
 
 var Banner = React.createClass({
     propTypes: {
@@ -6,10 +7,11 @@ var Banner = React.createClass({
         actions: PropTypes.object.isRequired
     },
     //prepare  five actor for  3d Animation Scenes
-    getNextActors:function(){
+    getNextActors:function(props){
         //check current    in reason
-        var {items,current} = this.props.banner;
+        var {items,current} = props.banner;
         var newActors = [];
+
         var getActor  = function(shift) {
             var result = 0;
             var shiftCount = Math.abs(shift); 
@@ -22,21 +24,23 @@ var Banner = React.createClass({
                 result = current;
             }
 
+            console.log(result);
 
             return result;
         };
 
         for (var i = -2 ; i <= 2 ; i++ ){
-             newActors.push(getActor(i ));
+             newActors.push(items[getActor( i )]);
         }
-        console.log('newActors =========================');
-        console.log(newActors);
+        //other items
+
+
 
         return newActors;
     },
     getInitialState: function() {
         return {
-            actors: this.getNextActors(),
+            actors: this.getNextActors(this.props),
             isRunning:false
         };
     },
@@ -46,38 +50,51 @@ var Banner = React.createClass({
     },
     componentWillUnmount: function() {
     },
-    componentWillReceiveProps:function(){
+    componentWillReceiveProps:function(nextProps){
         console.log('componentWillReceiveProps');
-        var nextState = this.getNextActors();
-        this.setState(nextState);
+        var nextState = this.getNextActors(nextProps);
+        this.setState(Object.assign({},this.state,{actors:nextState}));
 
     },
+    onNext:function(e){
+        // console.log('to next');
+        // var actorsDOM = $(this.refs.bannerList).find('li');
+        // $(actorsDOM).each(function(index,item){
+        //     $(item).addClass('go-actors-'+(index-1));
+        // });
+        this.props.actions.toNext();
+    },
+    onPrev:function(e){
+        // var actorsDOM = $(this.refs.bannerList).find('li');
+        // $(actorsDOM).each(function(index,item){
+        //     $(item).addClass('go-actors-'+(index+1));
+        // });
+
+        this.props.actions.toPrev();
+    },
     render: function() {
+        console.log('render');
+        console.log(this.state.actors);
 
-        var actorsNode = this.state.actors.map(function(actor,index) {
-            return (<span key={index}>{actor} - </span>);    
+        var actorsNode = this.state.actors.map(function(item,index) {
+            var classID = index;
+            var itemClass  =classNames({
+                ['set-actors-'+classID] : true
+            });
+            return (<li key={index} className={itemClass}><a title={item.title} href={item.link} target="_blank"><img className="image" src={item.url} /></a></li>);    
         });
-
-        var itemsNode = this.props.banner.items.map(function(item,index) {
-            var className = {
-
-            };
-            return (<li key={index} className={} ><a title={item.title} href={item.link} target="_blank"><img className="image" src={item.url} /></a></li>);    
-        });
-
-
 
         return (
             <div>
-                <a href={'#'} onClick={this.props.actions.toPrev}>to PREV</a><br/>
-                <a href={'#'} onClick={this.props.actions.toNext}>to NEXT</a><br/>
+                <a href={'#'} onClick={this.onPrev}>to PREV</a><br/>
+                <a href={'#'} onClick={this.onNext}>to NEXT</a><br/>
                 <p>current:{this.props.banner.current}</p>
-                <p>actors:{actorsNode}</p>
-                <ul>
-                { itemsNode }
-                </ul>
+                <div className = {'mdBanner'}>
+                    <ul className={"mdBanner-list"} ref="bannerList">
+                        {actorsNode}
+                    </ul>
+                </div>                
             </div>
-
         );
 
     }

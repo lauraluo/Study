@@ -14,13 +14,9 @@ import * as BannerAction from '../actions/banner'
 //     );
 //   } 
 // });
-console.log('React Dom Banner ===================');
-console.log(Banner);
 class App extends Component {
   render() {
    const { banner , actions } = this.props
-   console.log('App banner==========================');
-   console.log(banner);
     return (
       <div>
         <Banner  banner={ banner }  actions={ actions }/>

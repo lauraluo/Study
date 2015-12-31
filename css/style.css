@@ -1,0 +1,112 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.mdBanner {
+  width: 960px;
+  margin: 100px auto;
+  border: 1px solid red;
+  min-height: 400px;
+}
+
+.mdBanner .mdBanner-list {
+  position: relative;
+  width: 400px;
+  margin: 0 auto;
+  perspective: 500px;
+}
+
+.mdBanner .mdBanner-list li {
+  transform-origin: 50% 50%;
+  display: block;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5), 0 0 0 3px red;
+  position: absolute;
+  width: 400px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.mdBanner .mdBanner-list li a {
+  display: block;
+}
+
+.mdBanner .mdBanner-list li img {
+  width: 100%;
+  display: block;
+}
+
+.mdBanner .mdBanner-list li.actors-0 {
+  transform: translateX(-560px) rotateY(40deg) scale(0.6);
+  z-index: 1;
+}
+
+.mdBanner .mdBanner-list li.actors-1 {
+  transform: translateX(-400px) rotateY(10deg) scale(0.8) translateX(-10px);
+  z-index: 2;
+}
+
+.mdBanner .mdBanner-list li.actors-2 {
+  transform: translateX(0px) rotateY(0deg);
+  z-index: 3;
+}
+
+.mdBanner .mdBanner-list li.actors-3 {
+  transform: translateX(400px) rotateY(-10deg) scale(0.8) translateX(10px);
+  z-index: 2;
+}
+
+.mdBanner .mdBanner-list li.actors-4 {
+  transform: translateX(560px) rotateY(-20deg) scale(0.6);
+  z-index: 1;
+}
