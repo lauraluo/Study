@@ -19,7 +19,7 @@ class App extends Component {
    const { banner , actions } = this.props
     return (
       <div>
-        <Banner  banner={ banner }  actions={ actions }/>
+        <Banner  items={ banner.items } current={banner.current}  actions={ actions }  layout={'itunes'} width={400}/>
       </div>
     )
   }

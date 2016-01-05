@@ -1,13 +1,12 @@
-import React, {Component, PropTypes}from 'react';
-import classNames from 'classnames';
 
-import Util from '../util/util';
-// import Layout from '../util/layout';
-import Depot from '../util/depot';
 
-var Layout;
+import Ease from 'ease-functions';
+import Util from'./util';
+export default  function Layout(){
+};
 
-Layout.itunes = {
+
+layout.itunes = {
         distance: function distance(width, sides) {
             return Math.round(width * Math.log(sides));
         },
@@ -61,7 +60,7 @@ Layout.itunes = {
         }
 };
 
-Layout.prism = {
+layout.prism = {
     distance: function apothem(width, sides) {
         return Math.ceil(width / (2 * Math.tan(Math.PI / sides)));
     },
@@ -83,7 +82,7 @@ Layout.prism = {
     }
 };
 
-Layout.classic = {
+layout.classic = {
     distance: function distance(width, sides) {
         return Math.round(width * Math.log(sides));
     },
@@ -107,80 +106,3 @@ Layout.classic = {
     }
 };
 
-
-var Banner = React.createClass({
-    propTypes: {
-        // items: PropTypes.object.isRequired,
-        // current: PropTypes.object.isRequired
-    },
-    getActors:function(props){
-    },
-    getInitialState: function() {
-        return {
-            items: this.props.banner.items,
-            figures: Layout[this.props.layout].figures(this.props.width, this.props.items, 0),
-        };
-    },
-    getDefaultProps :function(){
-    },
-    componentDidMount: function() {
-        // this.depot = Depot(this.getInitialState(), this.props, this.setState.bind(this));
-        // this.onRotate = this.depot.onRotate.bind(this);
-    },
-    componentWillUnmount: function() {
-    },
-    componentWillReceiveProps:function(nextProps){
-        // var nextState = this.getActors(nextProps);
-        // this.setState(Object.assign({},this.state,{actors:nextState}));
-    },
-    onNext:function(e){
-        // console.log('to next');
-        // var actorsDOM = $(this.refs.bannerList).find('li');
-        // $(actorsDOM).each(function(index,item){
-        //     $(item).addClass('go-actors-'+(index-1));
-        // });
-        // this.props.actions.toNext();
-    },
-    onPrev:function(e){
-        // var actorsDOM = $(this.refs.bannerList).find('li');
-        // $(actorsDOM).each(function(index,item){
-        //     $(item).addClass('go-actors-'+(index+1));
-        // });
-
-        // this.props.actions.toPrev();
-    },
-    render: function() {
-        var angle = 2 * Math.PI / this.state.figures.length;
-        // var translateZ = -Layout[this.props.layout].distance(this.props.width, this.state.figures.length);
-        // var figures = this.state.figures.map(function (d, i) {
-        //     // return React.createElement(
-        //     //     'figure',
-        //     //     { key: i, style: Util.figureStyle(d) },
-        //     //     React.createElement('img', { src: d.image, alt: i, height: '100%', width: '100%' })
-        //     // );
-        // });
-        var figures =  this.state.figures.map(function(d,i) {
-
-            return (
-                <li key={i} className={itemClass} style={Util.figureStyle(d)}>
-                    <a title={d.title} href={d.link} target="_blank">
-                        <img className="image" src={d.url} />
-                    </a>
-                </li>
-            );    
-        });
-        return (
-            <div>
-                <a href={'#'} onClick={this.onPrev}>to PREV</a><br/>
-                <a href={'#'} onClick={this.onNext}>to NEXT</a><br/>
-                <p></p>
-                <div className = {'mdBanner'}>
-                    <ul className={"mdBanner-list"} ref="bannerList">
-                    </ul>
-                </div>                
-            </div>
-        );
-
-    }
-});
-export default  Banner;
