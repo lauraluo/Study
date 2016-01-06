@@ -4,6 +4,7 @@ import  * as Util  from '../util/util';
 import Layout from '../util/layout';
 import Depot from '../util/depot';
 
+
 var _layout = new Layout();
 
 var Banner = React.createClass({

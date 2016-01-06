@@ -6,6 +6,7 @@ import App from './containers/App'
 import configureStore from './store/configureStore'
 require('./style.scss')
 
+
 const store = configureStore()
 
 render(

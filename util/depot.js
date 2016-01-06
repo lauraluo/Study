@@ -43,8 +43,6 @@ export  default function depot (initialState, initialProps, callback) {
             callback(state);
             if (state.figures == to) {
                 cancelAnimationFrame(requestID);
-            }else {
-            	console.log('playing');
             }
         }
         requestAnimationFrame(animate);
