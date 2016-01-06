@@ -54,23 +54,23 @@ table {
     width: 960px;
     margin: 100px auto;
     border: 1px solid red;
-    min-height: 400px;
     .mdBanner-list {
         position: relative;
         width: $aItemGrid;
         margin: 0 auto;
-        perspective: 500px;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+        min-height: 400px;
         li {
             transform-origin:50% 50%;
             display: block;
             box-shadow: 0 0 20px 0 rgba(0,0,0,0.5), 0 0 0 3px red;
             position: absolute;
             width: $aItemGrid;
-            position: absolute;
-            top:0;
+            top:50%;
             left:0;
             transition: all .7s ease;
-
+            margin-top: -25%;
             a {display: block;}
             img {
                 width: 100%;

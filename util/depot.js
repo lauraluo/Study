@@ -2,34 +2,39 @@
 
 import Ease from 'ease-functions';
 import Layout from'./layout';
-import Util from'./util';
+import  * as Util from'./util';
 
-export  function depot (initialState, initialProps, callback) {
+var _layout = new Layout();
+
+export  default function depot (initialState, initialProps, callback) {
     var res = {};
     var state = initialState;
     var props = initialProps;
     var requestID;
-
+    console.log(callback);
     res.onNextProps = function onNextProps(nextProps) {
-        if (props.layout != nextProps.layout || props.images != nextProps.images) {
+        if (props.layout != nextProps.layout || props.items != nextProps.items) {
             props = nextProps;
-            var to = Layout[props.layout].figures(props.width, props.images, state.rotationY);
+            var to = _layout[props.layout].figures(props.width, props.items, state.rotationY);
             var bounds = transitionFigures(state.figures, to, Ease[props.ease], props.duration);
             var stepper = transit(bounds, to, props.duration);
             playAnimation(state, to, stepper, callback);
         }
         props = nextProps;
     };
+
     res.onRotate = function (angle) {
-        var to = Layout[props.layout].figures(props.width, props.images, state.rotationY + angle);
+        var to = _layout[props.layout].figures(props.width, props.items, state.rotationY + angle);
         state.rotationY += angle;
         var bounds = transitionFigures(state.figures, to, Ease[props.ease], props.duration);
         var stepper = transit(bounds, to, props.duration);
+        
         if (requestID) {
             cancelAnimationFrame(requestID);
         }
         playAnimation(state, to, stepper, callback);
     };
+
     function playAnimation(state, to, stepper, callback) {
         if (requestID) window.cancelAnimationFrame(requestID);
         function animate(timestamp) {
@@ -38,6 +43,8 @@ export  function depot (initialState, initialProps, callback) {
             callback(state);
             if (state.figures == to) {
                 cancelAnimationFrame(requestID);
+            }else {
+            	console.log('playing');
             }
         }
         requestAnimationFrame(animate);
