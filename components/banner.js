@@ -63,10 +63,10 @@ var Banner = React.createClass({
         });
         return (
             <div>
-                <a href={'#'} onClick={Util.partial(this.onRotate,-angle)}>to PREV</a><br/>
-                <a href={'#'} onClick={Util.partial(this.onRotate,+angle)}>to NEXT</a><br/>
                 <p></p>
                 <div className = {'mdBanner'}>
+                    <a className={'btnPrev'} href={'#'} onClick={Util.partial(this.onRotate,-angle)}>to PREV</a><br/>
+                    <a className={'btnNext'} href={'#'} onClick={Util.partial(this.onRotate,+angle)}>to NEXT</a><br/>
                     <ul className={"mdBanner-list"} ref="bannerList">
                         {figures}
                     </ul>

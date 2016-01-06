@@ -74,37 +74,37 @@ const initialState = {
             link: 'http://dummyimage.com/'
         }
        // {
-       //      url: 'http://dummyimage.com/600x400/000/fff&text=00',
+       //      url: 'http://dummyimage.com/600x400/4db594/fff&text=00',
        //      title: 'this items title ',
        //      link: 'http://dummyimage.com/'
        //  },
        //  {
-       //      url: 'http://dummyimage.com/600x400/000/fff&text=01',
+       //      url: 'http://dummyimage.com/600x400/4db594/fff&text=01',
        //      title: 'this items title ',
        //      link: 'http://dummyimage.com/'
        //  },
        //  {
-       //      url: 'http://dummyimage.com/600x400/000/fff&text=02',
+       //      url: 'http://dummyimage.com/600x400/4db594/fff&text=02',
        //      title: 'this items title ',
        //      link: 'http://dummyimage.com/'
        //  },
        //  {
-       //      url: 'http://dummyimage.com/600x400/000/fff&text=03',
+       //      url: 'http://dummyimage.com/600x400/4db594/fff&text=03',
        //      title: 'this items title ',
        //      link: 'http://dummyimage.com/'
        //  },
        //  {
-       //      url: 'http://dummyimage.com/600x400/000/fff&text=04',
+       //      url: 'http://dummyimage.com/600x400/4db594/fff&text=04',
        //      title: 'this items title ',
        //      link: 'http://dummyimage.com/'
        //  },
        //  {
-       //      url: 'http://dummyimage.com/600x400/000/fff&text=05',
+       //      url: 'http://dummyimage.com/600x400/4db594/fff&text=05',
        //      title: 'this items title ',
        //      link: 'http://dummyimage.com/'
        //  },
        //  {
-       //      url: 'http://dummyimage.com/600x400/000/fff&text=06',
+       //      url: 'http://dummyimage.com/600x400/4db594/fff&text=06',
        //      title: 'this items title ',
        //      link: 'http://dummyimage.com/'
        //  }

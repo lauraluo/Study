@@ -15,6 +15,8 @@ export  default function Layout(){
                 var acceptable = Math.round(initial / angle) * angle;
                 var rotate = 20;
                 var maxRatio = 0.4;
+                var zDistance = 2;
+                var xDistance = 1.05;
 
                 function cubicOut(time, begin, change, duration) {
                     return change * ((time = time / duration - 1) * time * time + 1) + begin;
@@ -38,17 +40,16 @@ export  default function Layout(){
                         thisRotate = Math.sin(angleR + Math.PI *0.5)*0.35;   
                     }
 
-
                     // console.log('d:  '+d+'===================');
                     // console.log('angleR:  '+angleR);
                     // console.log('sin:  '+Math.sin(angleR));
                     // console.log('ratio:  '+ratio);
                     // console.log('===================');
                     return {
-                        rotateY: 0-thisRotate * ratio.easeOut,
-                        translateX: (r * Math.cos(angleR)) ,
-                        translateZ: Math.max((0 - r * Math.abs(1 - Math.sin(angleR))) * ratio.easeOut, 0 - r),
-                        opacity: Math.sin(angleR) !=1 ? Math.sin(angleR ) /ratio.easeOut : 1,
+                        rotateY: 0 - thisRotate*ratio.easeOut ,
+                        translateX: (r * Math.cos(angleR)) *xDistance,
+                        translateZ: Math.max((0 - r * Math.abs(1 - Math.sin(angleR))) *zDistance, 0 - r),
+                        opacity: Math.sin(angleR) !=1 ? Math.sin(angleR )/ratio.easeOut  : 1,
                         present: true,
                         key: d,
                         image: images[d].url

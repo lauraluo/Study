@@ -43,6 +43,9 @@
     "sass-loader": "^0.5",
     "css-loader": "^0.18.0",
     "scss-loader": "",
-    "promise":""
+    "promise": "",
+    "ease-functions": "0.0.1",
+    "dat.gui": "~0.6.1",
+    "react-classname-module": "~0.1.1"
   }
 }
