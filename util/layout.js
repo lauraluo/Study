@@ -9,12 +9,12 @@ export  default function Layout(){
             },
             figures: function figures(width, images, initial) {
                 var sides = images.length;
-                var r = 1280 / 2;
+                var r = 960 / 2;
                 var angle = Math.PI * 2 / (sides);
                 var distance =  layout.itunes.distance(width, sides);
                 var acceptable = Math.round(initial / angle) * angle;
                 var rotate = 20;
-                var maxRatio = 0.2;
+                var maxRatio = 0.4;
 
                 function cubicOut(time, begin, change, duration) {
                     return change * ((time = time / duration - 1) * time * time + 1) + begin;
@@ -25,17 +25,19 @@ export  default function Layout(){
                 };
 
                 return Util.range(0, sides).map(function(d) {
-                    var ratio = 1;
+                    var ratio = {};
                     var angleR =Math.PI*(0.5) - ( d * angle + acceptable)  ; 
-                    var thisRotate = 0;
+                    var thisRotate = 0.5;
 
                     if(Math.abs(Math.cos(angleR)) !=  1  ){
-                        ratio =1+  Math.round((cubicIn( sides, 0, maxRatio, sides-1)*10)/10);
+                        ratio.easeOut =1+  Math.round((cubicOut( sides, 0, maxRatio, sides-1)*10)/10);
+                        ratio.easeIn =1+  Math.round((cubicIn( sides, 0, maxRatio, sides-1)*10)/10);
                     }
 
                     if( Math.sin(angleR) != -1){
                         thisRotate = Math.sin(angleR + Math.PI *0.5)*0.35;   
                     }
+
 
                     // console.log('d:  '+d+'===================');
                     // console.log('angleR:  '+angleR);
@@ -43,10 +45,10 @@ export  default function Layout(){
                     // console.log('ratio:  '+ratio);
                     // console.log('===================');
                     return {
-                        rotateY: thisRotate * ratio,
-                        translateX: (r * Math.cos(angleR)) * ratio,
-                        translateZ: Math.max((0 - r * Math.abs(1 - Math.sin(angleR))) * ratio, 0 - r),
-                        opacity: 1/*1*Math.sin(angleR)*/,
+                        rotateY: 0-thisRotate * ratio.easeOut,
+                        translateX: (r * Math.cos(angleR)) ,
+                        translateZ: Math.max((0 - r * Math.abs(1 - Math.sin(angleR))) * ratio.easeOut, 0 - r),
+                        opacity: Math.sin(angleR) !=1 ? Math.sin(angleR ) /ratio.easeOut : 1,
                         present: true,
                         key: d,
                         image: images[d].url
