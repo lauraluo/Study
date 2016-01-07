@@ -13,9 +13,9 @@ export  default function depot (initialState, initialProps, callback) {
     var requestID;
     console.log(callback);
     res.onNextProps = function onNextProps(nextProps) {
-        if (props.layout != nextProps.layout || props.items != nextProps.items) {
+        if (true /*props.layout != nextProps.layout || props.items != nextProps.items*/) {
             props = nextProps;
-            var to = _layout[props.layout].figures(props.width, props.items, state.rotationY);
+            var to = _layout[props.layout].figures(props, props.items, state.rotationY);
             var bounds = transitionFigures(state.figures, to, Ease[props.ease], props.duration);
             var stepper = transit(bounds, to, props.duration);
             playAnimation(state, to, stepper, callback);
@@ -24,7 +24,7 @@ export  default function depot (initialState, initialProps, callback) {
     };
 
     res.onRotate = function (angle) {
-        var to = _layout[props.layout].figures(props.width, props.items, state.rotationY + angle);
+        var to = _layout[props.layout].figures(props, props.items, state.rotationY + angle);
         state.rotationY += angle;
         var bounds = transitionFigures(state.figures, to, Ease[props.ease], props.duration);
         var stepper = transit(bounds, to, props.duration);

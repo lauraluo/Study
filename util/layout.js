@@ -7,16 +7,16 @@ export  default function Layout(){
             distance: function distance(width, sides) {
                 return Math.round(width * Math.log(sides));
             },
-            figures: function figures(width, images, initial) {
+            figures: function figures(props, images, initial) {
                 var sides = images.length;
                 var r = 960 / 2;
                 var angle = Math.PI * 2 / (sides);
-                var distance =  layout.itunes.distance(width, sides);
+                var distance =  layout.itunes.distance(props.width, sides);
                 var acceptable = Math.round(initial / angle) * angle;
                 var rotate = 20;
                 var maxRatio = 0.4;
-                var zDistance = 2;
-                var xDistance = 1.05;
+                var zDistance = props.zDistance;
+                var xDistance = props.xDistance;
 
                 function cubicOut(time, begin, change, duration) {
                     return change * ((time = time / duration - 1) * time * time + 1) + begin;
@@ -46,10 +46,10 @@ export  default function Layout(){
                     // console.log('ratio:  '+ratio);
                     // console.log('===================');
                     return {
-                        rotateY: 0 - thisRotate*ratio.easeOut ,
+                        rotateY: /*0 - thisRotate*ratio.easeOut */0 - thisRotate,
                         translateX: (r * Math.cos(angleR)) *xDistance,
-                        translateZ: Math.max((0 - r * Math.abs(1 - Math.sin(angleR))) *zDistance, 0 - r),
-                        opacity: Math.sin(angleR) !=1 ? Math.sin(angleR )/ratio.easeOut  : 1,
+                        translateZ: 0 -  r * Math.abs(1 - Math.sin(angleR)) *zDistance*ratio.easeOut, //bug issue with change z distance witnout min value
+                        opacity: Math.sin(angleR) !=1 ? Math.sin(angleR )  :1,
                         present: true,
                         key: d,
                         image: images[d].url

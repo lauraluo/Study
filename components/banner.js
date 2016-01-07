@@ -17,38 +17,23 @@ var Banner = React.createClass({
     getInitialState: function() {
         return {
             items: this.props.items,
-            figures: _layout[this.props.layout].figures( this.props.width, this.props.items, 0),
+            figures: _layout[this.props.layout].figures( this.props, this.props.items, 0),
             rotationY: 0
         };
     },
     getDefaultProps :function(){
     },
     componentDidMount: function() {
-        // this.depot = Depot(this.getInitialState(), this.props, this.setState.bind(this));
-        // this.onRotate = this.depot.onRotate.bind(this);
+
     },
     componentWillMount: function() {
-        console.log(this.getInitialState());
         this.depot = Depot( this.getInitialState(), this.props, this.setState.bind(this));
         this.onRotate = this.depot.onRotate.bind(this);       
     },
     componentWillReceiveProps:function(nextProps){
+        console.log('props change');
+        console.log(nextProps);
         this.depot.onNextProps(nextProps);
-    },
-    onNext:function(e){
-        // var actorsDOM = $(this.refs.bannerList).find('li');
-        // $(actorsDOM).each(function(index,item){
-        //     $(item).addClass('go-actors-'+(index-1));
-        // });
-        // this.props.actions.toNext();
-    },
-    onPrev:function(e){
-        // var actorsDOM = $(this.refs.bannerList).find('li');
-        // $(actorsDOM).each(function(index,item){
-        //     $(item).addClass('go-actors-'+(index+1));
-        // });
-
-        // this.props.actions.toPrev();
     },
     render: function() {
         // console.log('rander');

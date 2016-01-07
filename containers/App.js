@@ -28,7 +28,9 @@ var App = React.createClass({
             layout: 'itunes',
             width: 400,
             duration: 300 ,
-            ease: 'linear'           
+            ease: 'linear' ,
+            zDistance:2,          
+            xDistance:1.05         
         };
         var _this = this;
 
@@ -36,7 +38,8 @@ var App = React.createClass({
 
         this.controller = {};
         this.controller.duration = gui.add(state, 'duration',0, 2000).step(300);
-        this.controller.width = gui.add(state, 'width',300, 3000).step(300);
+        this.controller.zDistance = gui.add(state, 'zDistance',1, 20).step(0.1);
+        this.controller.xDistance = gui.add(state, 'xDistance',0.5, 5).step(0.1);
 
        Util.mapObj(function(input){
             input.onFinishChange(function(value) {
@@ -59,7 +62,16 @@ var App = React.createClass({
      const { banner , actions } = this.props
       return (
         <div>
-            <Banner  items={ banner.items } current={banner.current}  actions={ actions }  layout={'itunes'} width={400} duration={this.state.duration} ease={"linear"}  />
+            <Banner  
+                items={ banner.items } 
+                current={banner.current}  
+                actions={ actions }  
+                layout={'itunes'} 
+                width={400}
+                duration={this.state.duration}
+                zDistance={this.state.zDistance}       
+                xDistance={this.state.xDistance} 
+                ease={"linear"} />
         </div> 
         );
     }
