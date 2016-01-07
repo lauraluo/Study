@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Banner from '../components/banner'
 import * as BannerAction from '../actions/banner'
+import  * as Util from'../util/util';
 
 
 
@@ -26,22 +27,25 @@ var App = React.createClass({
         var state = {
             layout: 'itunes',
             width: 400,
-            duration: 500 ,
+            duration: 300 ,
             ease: 'linear'           
         };
         var _this = this;
 
-        // var gui = new dat.GUI();
-        // this.controller = gui.add(Object.assign({},state), 'duration',500, 10000).step(100);
-        // this.controller.onFinishChange(function(value) {
-        //     console.log(this);
-        //     var outputState  = {}; 
-        //     outputState[this.property] = value;
+        var gui = new dat.GUI();
 
-        //     _this.setState(Object.assign({},_this.state,outputState).bind(_this);
-        // });
+        this.controller = {};
+        this.controller.duration = gui.add(state, 'duration',0, 2000).step(300);
+        this.controller.width = gui.add(state, 'width',300, 3000).step(300);
 
-        return state;
+       Util.mapObj(function(input){
+            input.onFinishChange(function(value) {
+                // console.log(value);
+                _this.setState(Object.assign({},_this.state, state));
+            });
+        }, this.controller);
+
+        return Object.assign({},state);
     },
     getDefaultProps :function(){
     },
