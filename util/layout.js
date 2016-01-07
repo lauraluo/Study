@@ -17,7 +17,7 @@ export  default function Layout(){
                 var maxRatio = 0.4;
                 var zDistance = props.zDistance;
                 var xDistance = props.xDistance;
-
+                
                 function cubicOut(time, begin, change, duration) {
                     return change * ((time = time / duration - 1) * time * time + 1) + begin;
                 };
@@ -46,7 +46,7 @@ export  default function Layout(){
                     // console.log('ratio:  '+ratio);
                     // console.log('===================');
                     return {
-                        rotateY: /*0 - thisRotate*ratio.easeOut */0 - thisRotate,
+                        rotateY: /*0 - thisRotate*ratio.easeOut */0 - thisRotate*ratio.easeOut ,
                         translateX: (r * Math.cos(angleR)) *xDistance,
                         translateZ: 0 -  r * Math.abs(1 - Math.sin(angleR)) *zDistance*ratio.easeOut, //bug issue with change z distance witnout min value
                         opacity: Math.sin(angleR) !=1 ? Math.sin(angleR )  :1,

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Banner from '../components/banner'
 import * as BannerAction from '../actions/banner'
 import  * as Util from'../util/util';
-
+import Ease from 'ease-functions';
 
 
 // class App extends Component {
@@ -29,17 +29,22 @@ var App = React.createClass({
             width: 400,
             duration: 300 ,
             ease: 'linear' ,
-            zDistance:2,          
-            xDistance:1.05         
+            zDistance:15,          
+            xDistance:2.7         
         };
         var _this = this;
-
+        var easeType = [];
         var gui = new dat.GUI();
+        
+        Object.keys(Ease).map(function(key,index){
+            easeType.push(key.toString());
+        });
 
         this.controller = {};
         this.controller.duration = gui.add(state, 'duration',0, 2000).step(300);
-        this.controller.zDistance = gui.add(state, 'zDistance',1, 20).step(0.1);
-        this.controller.xDistance = gui.add(state, 'xDistance',0.5, 5).step(0.1);
+        this.controller.zDistance = gui.add(state, 'zDistance',1, 20).step(0.05);
+        this.controller.xDistance = gui.add(state, 'xDistance',0.5, 5).step(0.05);
+        this.controller.ease = gui.add(state, 'ease',easeType);
 
        Util.mapObj(function(input){
             input.onFinishChange(function(value) {
@@ -71,7 +76,7 @@ var App = React.createClass({
                 duration={this.state.duration}
                 zDistance={this.state.zDistance}       
                 xDistance={this.state.xDistance} 
-                ease={"linear"} />
+                ease={this.state.ease} />
         </div> 
         );
     }
